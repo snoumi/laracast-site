@@ -11,7 +11,6 @@
                         <a href="/" class=" <?= urlIs('/') ? "bg-gray-900 dark:bg-gray-950/50 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium">Home</a>
                         <a href="/games" class=" <?= urlIs('/games') ? "bg-gray-900 dark:bg-gray-950/50 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium">Games</a>
                         <a href="/random" class=" <?= urlIs('/random') ? "bg-gray-900 dark:bg-gray-950/50 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium">Random</a>
-                        <a href="/database" class=" <?= urlIs('/database') ? "bg-gray-900 dark:bg-gray-950/50 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium">Database</a>
                         <a href="/notes" class=" <?= urlIs('/notes') ? "bg-gray-900 dark:bg-gray-950/50 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium">Notes</a>
                     </div>
                 </div>

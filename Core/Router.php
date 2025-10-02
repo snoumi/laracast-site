@@ -1,68 +1,58 @@
 <?php
 
+namespace Core;
+
 class Router {
     protected $routes = [];
 
-    public function get($uri, $controller)
+    public function add($uri, $controller, $method)
     {
         $this->routes[] = [
             "uri" => $uri,
             "controller" => $controller,
-            "method" => "GET"
+            "method" => $method
         ];
+    }
+
+    public function get($uri, $controller)
+    {
+        $this->add($uri, $controller, "GET");
     }
 
     public function post($uri, $controller)
     {
-        $this->routes[] = [
-            "uri" => $uri,
-            "controller" => $controller,
-            "method" => "POST"
-        ];
+        $this->add($uri, $controller, "POST");
     }
 
     public function delete($uri, $controller)
     {
-        $this->routes[] = [
-            "uri" => $uri,
-            "controller" => $controller,
-            "method" => "DELETE"
-        ];
+        $this->add($uri, $controller, "DELETE");
     }
 
     public function patch($uri, $controller)
     {
-        $this->routes[] = [
-            "uri" => $uri,
-            "controller" => $controller,
-            "method" => "PATCH"
-        ];
+        $this->add($uri, $controller, "PATCH");
     }
 
     public function put($uri, $controller)
     {
-        $this->routes[] = [
-            "uri" => $uri,
-            "controller" => $controller,
-            "method" => "PUT"
-        ];
+        $this->add($uri, $controller, "PUT");
+    }
+
+    public function route($uri, $method)
+    {
+           foreach ($this->routes as $route) {
+               if ($route["uri"] == $uri && $route["method"] == strtoupper($method)) {
+                   return require base_path($route["controller"]);
+               }
+           }
+           $this->abort();
+    }
+
+    protected function abort($code = 404)
+    {
+        http_response_code($code);
+        require base_path("views/$code.php");
+        die();
     }
 }
-
-//function routeToController($uri, $routes) {
-//    if (array_key_exists($uri, $routes)) {
-//        require base_path($routes[$uri]);
-//    } else {
-//        abort();
-//    }
-//}
-//
-//function abort($code = 404) {
-//    http_response_code($code);
-//    require base_path("views/$code.php");
-//    die();
-//}
-//
-//$routes = require base_path("routes.php");
-//$uri = parse_url($_SERVER['REQUEST_URI'])["path"];
-//routeToController($uri, $routes);
